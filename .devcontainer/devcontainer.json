@@ -1,0 +1,9 @@
+{
+  "name": "Sistema Reservas Hotel",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [3001, 5173, 5984, 5985],
+  "postStartCommand": "docker compose up -d && nohup node backend/server.js > backend.log 2>&1 & nohup npm --prefix frontend run dev -- --host > frontend.log 2>&1 & sleep 6 && gh codespace ports visibility 3001:public 5173:public 5984:public 5985:public -c $CODESPACE_NAME"
+}
